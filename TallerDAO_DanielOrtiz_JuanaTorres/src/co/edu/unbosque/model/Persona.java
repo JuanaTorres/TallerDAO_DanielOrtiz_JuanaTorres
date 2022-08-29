@@ -1,18 +1,34 @@
 package co.edu.unbosque.model;
 
 public class Persona {
+	
 	public String id;
 	public String edad;
 	public String nombre;
 	public String correo;
 	
 	public Persona(String id, String edad, String nombre, String correo) {
+		
 		this.id = id;
 		this.edad = edad;
 		this.nombre = nombre;
 		this.correo = correo;
+		
 	}
+	
 	public Persona() {
+		
+		
+		
+	}
+	
+	private void verificarInvariante() {
+		
+		assert id!= null : "La identificación no puede ser null";
+		assert edad != null : "La edad no puede ser null";
+		assert nombre != null : "El nombre no puede ser null";
+		assert correo != null : "El correo no puede ser null";
+		
 	}
 
 	public String getId() {
