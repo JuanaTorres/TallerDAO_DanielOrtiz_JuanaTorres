@@ -15,19 +15,23 @@ public class SqlLite_BD {
     private Connection connection = null;
     private ResultSet resultSet = null;
     private Statement statement = null;
-    private String db= "E:\\dbSQLite\\dbTest.sqlite";  //esto puede cambiar   
-
+    private String db= "BD\\Persona.db";  //esto puede cambiar   
+    
 //Constructor de clase que se conecta a la base de datos SQLite 
     public SqlLite_BD()
     {
-      try{
-         Class.forName("org.sqlite.JDBC");
-         connection = DriverManager.getConnection("jdbc:sqlite:" + this.db );
-         System.out.println("Conectado a la base de datos SQLite [ " + this.db + "]");
-      }catch(Exception e){
-         System.out.println(e);
-      }
+    	
+    	conectarBasedeDatos();
 
+    }
+    public void conectarBasedeDatos() {
+    	try{
+    		//Class.forName("org.sqlite.Driver").newInstance(); connection = DriverManager.getConnection("jdbc:sqlite:sample.db");
+    		connection = DriverManager.getConnection("jdbc:sqlite:" + this.db);
+            System.out.println("Conectado a la base de datos SQLite [ " + this.db + "]");
+         }catch(Exception e){
+       	  e.printStackTrace();
+         }
     }
 
  /* METODO PARA INSERTAR UN REGISTRO EN LA BASE DE DATOS
@@ -38,11 +42,11 @@ public class SqlLite_BD {
  * OUTPUT:
  * Boolean
 */
- public boolean insert(String table, String fields, String values)
+ public boolean insertar( String id, String Nombre, String Correo, String Edad)
     {
         boolean res=false;
         //Se arma la consulta
-        String q=" INSERT INTO " + table + " ( " + fields + " ) VALUES ( " + values + " ) ";
+        String q=" INSERT INTO Persona ( Id,Nombre, Correo, Edad ) VALUES ( " + id+","+Nombre+","+ Correo+","+ Edad + " ) ";
         //se ejecuta la consulta
         try {
             PreparedStatement pstm = connection.prepareStatement(q);
@@ -54,21 +58,38 @@ public class SqlLite_BD {
         }
       return res;
     }
+ public String buscar( String id)
+ {
+	 String res=" ID | Nombre | Edad | Correo \n ";
+	    try {
+	      statement = connection.createStatement();
+	      resultSet = statement.executeQuery("SELECT * FROM Persona WHERE id='"+id+"';");
+	      while (resultSet.next())
+	      {
+	        res+=resultSet.getString("Id") + " | " + resultSet.getString("Nombre") + " | " +  resultSet.getString("Edad") +" | " +  resultSet.getString("Correo") + " \n ";
+	      }
+	     }
+	     catch (SQLException ex) {
+	        System.out.println(ex);
+	     }
+	    return res;
+	 }
+			 
 
  /* METODO PARA REALIZAR UNA CONSULTA A LA BASE DE DATOS
  * INPUT:
  * OUTPUT: String con los datos concatenados
  * 
 */
- public String select()
+ public String seleccionar()
  {
-    String res=" ID | Nombre | Apellido \n ";
+    String res=" ID | Nombre | Edad | Correo \n ";
     try {
       statement = connection.createStatement();
-      resultSet = statement.executeQuery("SELECT * FROM persona ; ");
+      resultSet = statement.executeQuery("SELECT * FROM Persona ; ");
       while (resultSet.next())
       {
-        res+=resultSet.getString("id") + " | " + resultSet.getString("nombre") + " | " +  resultSet.getString("apellido") + " \n ";
+        res+=resultSet.getString("Id") + " | " + resultSet.getString("Nombre") + " | " +  resultSet.getString("Edad") +" | " +  resultSet.getString("Correo") + " \n ";
       }
      }
      catch (SQLException ex) {
@@ -89,5 +110,14 @@ public class SqlLite_BD {
             System.out.println(ex);
         }
     }
+ /* public static void main(String[] args) {
+      //Se crea instancia a objeto y se conecta a SQLite
+	  SqlLite_BD fbc = new SqlLite_BD();
+     //Se insertan algunos datos
+     fbc.insert("'1000589776'", " 'Juana Torres'","'jvtp@gmail.com'", "'14'" );
+     //Se imprimen los datos de la tabla
+     System.out.println( fbc.select() );
+     fbc.desconectar();
+ }*/
 
 }
