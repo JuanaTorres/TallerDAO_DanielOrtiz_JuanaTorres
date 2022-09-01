@@ -11,11 +11,11 @@ import co.edu.unbosque.model.Persona;
 
 public class Archivo {
 	private File archivo;
-    private static String ruta_archivo = "./archivoBinario.dat";
+    private static String ruta_archivo = "./BD/archivoBinario.dat";
     //crea el archivo si no existe de lo contrario no ocurre nada
     
     public Archivo(){
-    	archivo = new File("./archivoBinario.dat");
+    	archivo = new File("./BD/archivoBinario.dat");
     	escribirABinario(null);
     }
 
@@ -65,5 +65,5 @@ public class Archivo {
 			return "Ocurrio un problema";
 		}
 	}
-
+    
 }
