@@ -58,7 +58,7 @@ public class SqlLite_BD {
         }
       return res;
     }
- public String buscar( String id)
+ public String buscar(String id)
  {
 	 String res=" ID | Nombre | Edad | Correo \n ";
 	    try {
@@ -98,6 +98,24 @@ public class SqlLite_BD {
     return res;
  }
 
+ 	public boolean actualizar(String id, String Nombre, String Correo, String Edad) {
+ 		
+ 		boolean res=false;
+ 		//Se arma la consulta
+ 		String q=" UPDATE INTO Persona ( Id,Nombre, Correo, Edad ) SET Nombre = '" + Nombre + "', Correo = '" + Correo + "', Edad = '" + Edad + "' WHERE id = " + id + ";";
+ 		//se ejecuta la consulta
+ 		try {
+ 			PreparedStatement pstm = connection.prepareStatement(q);
+ 			pstm.execute();
+ 			pstm.close();
+ 			res=true;
+ 		}catch(Exception e){
+ 			System.out.println(e);
+ 		}
+ 		return res;
+ 		
+ 	}
+ 	
   public void desconectar()
     {
         try {
@@ -110,13 +128,13 @@ public class SqlLite_BD {
             System.out.println(ex);
         }
     }
- /* public static void main(String[] args) {
+  /*public static void main(String[] args) {
       //Se crea instancia a objeto y se conecta a SQLite
 	  SqlLite_BD fbc = new SqlLite_BD();
      //Se insertan algunos datos
-     fbc.insert("'1000589776'", " 'Juana Torres'","'jvtp@gmail.com'", "'14'" );
+     fbc.insertar("'1000589776'", " 'Juana Torres'","'jvtp@gmail.com'", "'14'" );
      //Se imprimen los datos de la tabla
-     System.out.println( fbc.select() );
+     System.out.println( fbc.seleccionar() );
      fbc.desconectar();
  }*/
 

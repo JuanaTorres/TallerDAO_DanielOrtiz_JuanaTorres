@@ -49,7 +49,24 @@ public class PersonaDAO {
 		}
 
 	}
-
+	
+	public boolean actualizarPersona(String id, ArrayList<Persona> personas, String nombre, String correo, String edad) {
+		
+		Persona a = buscarPersona(id, personas);
+		
+		if(a != null) {
+			
+			a.setNombre(nombre);
+			a.setCorreo(correo);
+			a.setEdad(edad);
+			return true;
+			
+		} else {
+			return false;
+		}
+		
+	}
+	
 	public boolean eliminarPersona(String id, ArrayList<Persona> personas) {
 
 		boolean resp = false;

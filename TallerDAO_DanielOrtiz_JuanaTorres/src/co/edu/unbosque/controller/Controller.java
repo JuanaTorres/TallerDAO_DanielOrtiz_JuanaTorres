@@ -12,7 +12,7 @@ public class Controller implements ActionListener{
 	
 	public Controller() {
 		
-		vista= new View();
+		vista = new View();
 		Archivo archivo = new Archivo();
 	
 		
