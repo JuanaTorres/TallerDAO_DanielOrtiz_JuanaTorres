@@ -12,9 +12,12 @@ public class Controller implements ActionListener{
 	
 	public Controller() {
 		
-		vista = new View();
 		Archivo archivo = new Archivo();
-	
+		vista = new View();
+		vista.getPanel1().getbActualizar().addActionListener(this);
+		vista.getPanel1().getbArreglo().addActionListener(this);
+		vista.getPanel1().getbArchivo().addActionListener(this);
+		vista.getPanel1().getbBasedeDatos().addActionListener(this);
 		
 	}
 	
@@ -26,17 +29,37 @@ public class Controller implements ActionListener{
 		
 		case "Actualizar":
 			
+			vista.getPanel2().setVisible(true);
+			vista.getPanel2().setEnabled(true);
+			vista.getPanel3().setVisible(false);
+			vista.getPanel3().setEnabled(false);
+			
 			break;
 		
 		case "Arreglo":
+			
+			vista.getPanel2().setVisible(false);
+			vista.getPanel2().setEnabled(false);
+			vista.getPanel3().setVisible(true);
+			vista.getPanel3().setEnabled(true);
 			
 			break;
 			
 		case "Archivo":
 			
+			vista.getPanel2().setVisible(false);
+			vista.getPanel2().setEnabled(false);
+			vista.getPanel3().setVisible(false);
+			vista.getPanel3().setEnabled(false);
+			
 			break;
 		
 		case "Base de Datos":
+			
+			vista.getPanel2().setVisible(false);
+			vista.getPanel2().setEnabled(false);
+			vista.getPanel3().setVisible(false);
+			vista.getPanel3().setEnabled(false);
 			
 			break;
 		

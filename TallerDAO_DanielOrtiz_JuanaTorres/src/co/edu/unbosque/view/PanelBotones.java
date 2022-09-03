@@ -59,44 +59,36 @@ public class PanelBotones extends JPanel{
 		
 	}
 
-	
-	public JButton getbCrear() {
+	public JButton getbActualizar() {
 		return bActualizar;
 	}
 
-	
-	public void setbCrear(JButton bCrear) {
-		this.bActualizar = bCrear;
+	public void setbActualizar(JButton bActualizar) {
+		this.bActualizar = bActualizar;
 	}
 
-	
-	public JButton getbLeer() {
+	public JButton getbArreglo() {
 		return bArreglo;
 	}
 
-	
-	public void setbLeer(JButton bLeer) {
-		this.bArreglo = bLeer;
+	public void setbArreglo(JButton bArreglo) {
+		this.bArreglo = bArreglo;
 	}
 
-	
-	public JButton getbActualizar() {
+	public JButton getbArchivo() {
 		return bArchivo;
 	}
 
-	
-	public void setbActualizar(JButton bActualizar) {
-		this.bArchivo = bActualizar;
+	public void setbArchivo(JButton bArchivo) {
+		this.bArchivo = bArchivo;
 	}
 
-	
-	public JButton getbBorrar() {
+	public JButton getbBasedeDatos() {
 		return bBasedeDatos;
 	}
 
-	
-	public void setbBorrar(JButton bBorrar) {
-		this.bBasedeDatos = bBorrar;
+	public void setbBasedeDatos(JButton bBasedeDatos) {
+		this.bBasedeDatos = bBasedeDatos;
 	}
 	
 }
