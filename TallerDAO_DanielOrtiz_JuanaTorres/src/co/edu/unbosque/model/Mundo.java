@@ -26,7 +26,6 @@ public class Mundo {
 			archivo= new Archivo ();
 			personaDao =new PersonaDAO();
 		}
-		System.out.println(baseDatos);
 	}
 	
 	public void cerrarBaseDatos() {
@@ -95,7 +94,7 @@ public class Mundo {
 		if(res==null) {
 			return "No existe una persona con la id: "+ id;
 		}
-		return " ID | Nombre | Edad | Correo \n "+res;
+		return res;
 	}
 	public String leerBaseDatos() {
 		String res="";
