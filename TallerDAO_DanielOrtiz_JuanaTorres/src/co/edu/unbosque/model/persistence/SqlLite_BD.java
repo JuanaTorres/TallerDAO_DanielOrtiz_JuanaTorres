@@ -139,8 +139,6 @@ public class SqlLite_BD {
   public void desconectar()
     {
         try {
-            resultSet.close();
-            statement.close();
             connection.close();
             System.out.println("Desconectado de la base de datos [ " + this.db + "]");
         }

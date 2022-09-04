@@ -22,10 +22,11 @@ public class Mundo {
 			sqlLite = new SqlLite_BD();
 		}else if(baseDatos.equals("Cassandra")) {
 			cassandra = new Cassandra();
-		}else  {
+		}else if(baseDatos.equals("Archivo")||baseDatos.equals("Arreglo")) {
 			archivo= new Archivo ();
 			personaDao =new PersonaDAO();
 		}
+		System.out.println(baseDatos);
 	}
 	
 	public void cerrarBaseDatos() {

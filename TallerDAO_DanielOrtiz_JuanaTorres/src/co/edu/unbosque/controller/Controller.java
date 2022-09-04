@@ -15,6 +15,7 @@ public class Controller implements ActionListener{
 	public Controller() {
 
 		modelo = new Mundo();
+		modelo.setBaseDatos("");
 		vista = new View();
 
 		vista.getPanel1().getbArreglo().addActionListener(this);
@@ -65,6 +66,9 @@ public class Controller implements ActionListener{
 			vista.getPanel5().setEnabled(false);
 			vista.getPanel6().setVisible(false);
 			vista.getPanel6().setEnabled(false);
+			modelo.cerrarBaseDatos();
+			modelo.setBaseDatos("Arreglo");
+			modelo.inicializarBaseDatos();
 			break;
 
 		case "Archivo":
@@ -79,6 +83,9 @@ public class Controller implements ActionListener{
 			vista.getPanel5().setEnabled(false);
 			vista.getPanel6().setVisible(false);
 			vista.getPanel6().setEnabled(false);
+			modelo.cerrarBaseDatos();
+			modelo.setBaseDatos("Archivo");
+			modelo.inicializarBaseDatos();
 			break;
 
 		case "SQLlite":
@@ -93,6 +100,9 @@ public class Controller implements ActionListener{
 			vista.getPanel5().setEnabled(false);
 			vista.getPanel6().setVisible(false);
 			vista.getPanel6().setEnabled(false);
+			modelo.cerrarBaseDatos();
+			modelo.setBaseDatos("SqlLite");
+			modelo.inicializarBaseDatos();
 			break;
 
 		case "Cassandra":
@@ -107,6 +117,9 @@ public class Controller implements ActionListener{
 			vista.getPanel5().setEnabled(true);
 			vista.getPanel6().setVisible(false);
 			vista.getPanel6().setEnabled(false);
+			modelo.cerrarBaseDatos();
+			modelo.setBaseDatos("Cassandra");
+			modelo.inicializarBaseDatos();
 			break;
 
 			//CRUD Arreglo
