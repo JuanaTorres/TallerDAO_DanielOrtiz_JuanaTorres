@@ -44,6 +44,9 @@ public class SqlLite_BD {
 */
  public boolean insertar( String id, String Nombre, String Correo, String Edad)
     {
+	 	if(buscar(id)!=null) {
+	 		return false;
+	 	}
         boolean res=false;
         //Se arma la consulta
         String q=" INSERT INTO Persona ( Id,Nombre, Correo, Edad ) VALUES ( " + id+","+Nombre+","+ Correo+","+ Edad + " ) ";
@@ -60,13 +63,13 @@ public class SqlLite_BD {
     }
  public String buscar(String id)
  {
-	 String res=" ID | Nombre | Edad | Correo \n ";
+	 String res=null;
 	    try {
 	      statement = connection.createStatement();
 	      resultSet = statement.executeQuery("SELECT * FROM Persona WHERE id='"+id+"';");
 	      while (resultSet.next())
 	      {
-	        res+=resultSet.getString("Id") + " | " + resultSet.getString("Nombre") + " | " +  resultSet.getString("Edad") +" | " +  resultSet.getString("Correo") + " \n ";
+	        res=resultSet.getString("Id") + " | " + resultSet.getString("Nombre") + " | " +  resultSet.getString("Edad") +" | " +  resultSet.getString("Correo") + " \n ";
 	      }
 	     }
 	     catch (SQLException ex) {
@@ -74,7 +77,22 @@ public class SqlLite_BD {
 	     }
 	    return res;
 	 }
-			 
+ public boolean eliminar(String id)
+ {
+	 if(buscar(id)==null) {
+	 		return false;
+	 	}
+	 boolean res= false;
+	    try {
+	      statement = connection.createStatement();
+	      resultSet = statement.executeQuery("DELETE * FROM Persona WHERE id='"+id+"';");
+	      res= true;
+	     }
+	     catch (SQLException ex) {
+	        System.out.println(ex);
+	     }
+	    return res;
+	 }		 
 
  /* METODO PARA REALIZAR UNA CONSULTA A LA BASE DE DATOS
  * INPUT:
@@ -83,7 +101,7 @@ public class SqlLite_BD {
 */
  public String seleccionar()
  {
-    String res=" ID | Nombre | Edad | Correo \n ";
+    String res=null;
     try {
       statement = connection.createStatement();
       resultSet = statement.executeQuery("SELECT * FROM Persona ; ");
@@ -99,7 +117,9 @@ public class SqlLite_BD {
  }
 
  	public boolean actualizar(String id, String Nombre, String Correo, String Edad) {
- 		
+ 		if(buscar(id)==null) {
+	 		return false;
+	 	}
  		boolean res=false;
  		//Se arma la consulta
  		String q=" UPDATE INTO Persona ( Id,Nombre, Correo, Edad ) SET Nombre = '" + Nombre + "', Correo = '" + Correo + "', Edad = '" + Edad + "' WHERE id = " + id + ";";

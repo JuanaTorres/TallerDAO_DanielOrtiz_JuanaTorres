@@ -1,6 +1,8 @@
 package co.edu.unbosque.model;
 
-public class Persona {
+import java.io.Serializable;
+
+public class Persona implements Serializable{
 	
 	public String id;
 	public String edad;

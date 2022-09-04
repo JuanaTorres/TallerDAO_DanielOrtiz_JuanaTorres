@@ -6,27 +6,30 @@ import java.util.ArrayList;
 import co.edu.unbosque.model.Persona;
 
 public class PersonaDAO {
-
+	private ArrayList<Persona> personas;
 	public PersonaDAO() {
+		personas = new ArrayList<Persona>();
 	}
 
-
-	public String verPersona(ArrayList<Persona> Personas) {
+//Revisar
+	public String verPersonas() {
 		String texto = "";
-		for (int i = 0; i < Personas.size(); i++) {
-			texto = texto.concat(Personas.get(i).toString() + "\n");
+		for (int i = 0; i < personas.size(); i++) {
+			texto = texto.concat(personas.get(i).toString() + "\n");
 		}
 		return texto;
+	
 	}
+	
 
-	public Persona buscarPersona(String id, ArrayList<Persona> Personas) {
+	public Persona buscarPersona(String id) {
 
 		Persona encontrado = null;
 
-		if (!Personas.isEmpty()) {
-			for (int i = 0; i < Personas.size(); i++) {
-				if (Personas.get(i).getId().equals(id)) {
-					encontrado = Personas.get(i);
+		if (!personas.isEmpty()) {
+			for (int i = 0; i < personas.size(); i++) {
+				if (personas.get(i).getId().equals(id)) {
+					encontrado = personas.get(i);
 				}
 			}
 		}
@@ -35,12 +38,11 @@ public class PersonaDAO {
 	}
 
 
-	public boolean agregarPersona(String id, String edad, String nombre, String correo,
-			ArrayList<Persona> personas) {
+	public boolean agregarPersona(String id, String edad, String nombre, String correo) {
 
 		Persona nuevo = new Persona( id,  edad,  nombre,  correo);
 
-		if (buscarPersona(id, personas) == null) {
+		if (buscarPersona(id) == null) {
 			personas.add(nuevo);
 
 			return true;
@@ -50,9 +52,19 @@ public class PersonaDAO {
 
 	}
 	
-	public boolean actualizarPersona(String id, ArrayList<Persona> personas, String nombre, String correo, String edad) {
+	public ArrayList<Persona> getPersonas() {
+		return personas;
+	}
+
+
+	public void setPersonas(ArrayList<Persona> personas) {
+		this.personas = personas;
+	}
+
+
+	public boolean actualizarPersona(String id, String nombre, String correo, String edad) {
 		
-		Persona a = buscarPersona(id, personas);
+		Persona a = buscarPersona(id);
 		
 		if(a != null) {
 			
@@ -67,12 +79,12 @@ public class PersonaDAO {
 		
 	}
 	
-	public boolean eliminarPersona(String id, ArrayList<Persona> personas) {
+	public boolean eliminarPersona(String id) {
 
 		boolean resp = false;
 		
 
-		Persona a = buscarPersona(id, personas);
+		Persona a = buscarPersona(id);
 
 		if (a != null) {
 

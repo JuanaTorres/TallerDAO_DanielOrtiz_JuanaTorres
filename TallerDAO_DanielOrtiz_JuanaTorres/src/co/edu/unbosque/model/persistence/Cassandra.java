@@ -16,6 +16,7 @@ public class Cassandra {
 
 	public Cassandra() {
 		conectarCassandra();
+		
 	}
 	public void conectarCassandra(){
 		try {
@@ -54,8 +55,11 @@ public class Cassandra {
 			e.getKeyspace();
 		}
 	}
+	 public void desconectar() {
+		 cluster.close();
+	 }
 	public String leerTabla() {
-		String a = "id | Nombre |Correo | Edad \n";
+		String a = null;
 		ResultSet rs = sesion.execute("select * from \"Persona\"; ");
 		Iterator<Row> iterador = rs.iterator();
 		while (iterador.hasNext()){
@@ -98,7 +102,7 @@ public class Cassandra {
 		ResultSet rs = sesion.execute("update into \"Persona\" where = \"id\" = '"+id+"' set \"Nombre\" = '"+Nombre+"', \"Correo\"= '"+Correo+"', \"Edad\" = '"+Edad+"';  ");
 		return rs.isExhausted();
 	}
-	//	public static void main(String[] args) {
-	//	      Cassandra c= new Cassandra();
-	//	 }
+//		public static void main(String[] args) {
+//		      Cassandra c= new Cassandra();
+//		 }
 }

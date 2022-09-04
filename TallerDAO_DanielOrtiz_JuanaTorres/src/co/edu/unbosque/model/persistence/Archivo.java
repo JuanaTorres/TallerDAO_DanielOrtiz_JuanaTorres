@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 
 import co.edu.unbosque.model.Persona;
 
@@ -16,22 +17,26 @@ public class Archivo {
     
     public Archivo(){
     	archivo = new File("./BD/archivoBinario.dat");
-    	escribirABinario(null);
+    	crearArchivo();
     }
-
-    public String escribirABinario(Persona persona)//Objeto a guardar en archivo *.DAt
+    public void crearArchivo() {
+    	try {
+			archivo.createNewFile();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    public String escribirABinario(ArrayList<Persona> personas)//Objeto a guardar en archivo *.DAt
     {
         try {
-        	if (archivo.createNewFile()){
-                System.out.println("The file is created successfully!");
-            }
-            else{
-                System.out.println("The file already exists.");
-            }
+        	
             //Se crea un Stream para guardar archivo
             ObjectOutputStream file = new ObjectOutputStream(new FileOutputStream( this.ruta_archivo ));
             //Se escribe el objeto en archivo
-            file.writeObject(persona);
+            for (int i = 0; i < personas.size(); i++) {
+            	file.writeObject(personas.get(i));
+    		}
             //se cierra archivo
             file.close();
         } catch (IOException ex) {
@@ -41,29 +46,27 @@ public class Archivo {
         return "Se escribio el archivo";
     }
 
-    public String leerRegistro() {
-    	String cadena= "\n";
-        ObjectInputStream in;
+	public String leerRegistro() {
 		try {
-			if (archivo.createNewFile()){
-                System.out.println("The file is created successfully!");
+			
+			FileInputStream fis = new FileInputStream(archivo);
+            
+            ObjectInputStream leer;
+            String datos ="";
+            while(fis.available()>0){
+                leer= new ObjectInputStream(fis);
+                Persona personaLeida= (Persona) leer.readObject();
+                datos+=personaLeida.id+" | "+personaLeida.nombre+" | "+personaLeida.edad+" | "+personaLeida.correo+"\n";  
             }
-            else{
-                System.out.println("The file already exists.");
-            }
-			in = new ObjectInputStream(new FileInputStream(ruta_archivo));
-	        Persona[] datos = (Persona[])in.readObject();
-	        in.close();
-	        for (int i = 0; i < datos.length; i++) {
-	            cadena= cadena +"\n"+(datos[i].getEdad());
-	            cadena= cadena +"\n"+(datos[i].getNombre());
-	        }
-	        return cadena;
+			
+	        fis.close();
+	        
+	        return datos;
 		} catch (IOException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return "Ocurrio un problema";
+			return null;
 		}
 	}
-    
+
 }
