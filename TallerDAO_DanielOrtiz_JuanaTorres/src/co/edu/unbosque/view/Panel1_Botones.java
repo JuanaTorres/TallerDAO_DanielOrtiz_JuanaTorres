@@ -8,15 +8,15 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
-public class PanelBotones extends JPanel{
+public class Panel1_Botones extends JPanel{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JButton bActualizar, bArreglo, bArchivo, bBasedeDatos;
+	private JButton bArreglo, bArchivo, bBasedeDatos, bCassandra;
 	
-	public PanelBotones() {
+	public Panel1_Botones() {
 		
 		setLayout(null);
 		
@@ -25,16 +25,8 @@ public class PanelBotones extends JPanel{
 		border.setTitleColor(Color.BLACK);
 		setBorder(border);
 		
-		bActualizar = new JButton("Actualizar");
-		bActualizar.setBounds(10, 20, 120, 30);
-		bActualizar.setOpaque(true);
-		bActualizar.setFont(new Font("Arial Black", Font.BOLD, 12));
-		bActualizar.setBackground(Color.WHITE);
-		bActualizar.setForeground(Color.BLACK);
-		add(bActualizar);
-		
 		bArreglo = new JButton("Arreglo");
-		bArreglo.setBounds(10, 60, 120, 30);
+		bArreglo.setBounds(10, 20, 120, 30);
 		bArreglo.setOpaque(true);
 		bArreglo.setFont(new Font("Arial Black", Font.BOLD, 12));
 		bArreglo.setBackground(Color.WHITE);
@@ -42,29 +34,29 @@ public class PanelBotones extends JPanel{
 		add(bArreglo);
 		
 		bArchivo = new JButton("Archivo");
-		bArchivo.setBounds(10, 100, 120, 30);
+		bArchivo.setBounds(10, 60, 120, 30);
 		bArchivo.setOpaque(true);
 		bArchivo.setFont(new Font("Arial Black", Font.BOLD, 12));
 		bArchivo.setBackground(Color.WHITE);
 		bArchivo.setForeground(Color.BLACK);
 		add(bArchivo);
 		
-		bBasedeDatos = new JButton("Base de Datos");
-		bBasedeDatos.setBounds(10, 140, 120, 30);
+		bBasedeDatos = new JButton("SQLlite");
+		bBasedeDatos.setBounds(10, 100, 120, 30);
 		bBasedeDatos.setOpaque(true);
 		bBasedeDatos.setFont(new Font("Arial Black", Font.BOLD, 12));
 		bBasedeDatos.setBackground(Color.WHITE);
 		bBasedeDatos.setForeground(Color.BLACK);
 		add(bBasedeDatos);
 		
-	}
-
-	public JButton getbActualizar() {
-		return bActualizar;
-	}
-
-	public void setbActualizar(JButton bActualizar) {
-		this.bActualizar = bActualizar;
+		bCassandra= new JButton("Cassandra");
+		bCassandra.setBounds(10, 140, 120, 30);
+		bCassandra.setOpaque(true);
+		bCassandra.setFont(new Font("Arial Black", Font.BOLD, 12));
+		bCassandra.setBackground(Color.WHITE);
+		bCassandra.setForeground(Color.BLACK);
+		add(bCassandra);
+		
 	}
 
 	public JButton getbArreglo() {
@@ -89,6 +81,14 @@ public class PanelBotones extends JPanel{
 
 	public void setbBasedeDatos(JButton bBasedeDatos) {
 		this.bBasedeDatos = bBasedeDatos;
+	}
+	
+	public JButton getbCassandra() {
+		return bCassandra;
+	}
+	
+	public void setbCassandra(JButton bCassandra) {
+		this.bCassandra = bCassandra;
 	}
 	
 }

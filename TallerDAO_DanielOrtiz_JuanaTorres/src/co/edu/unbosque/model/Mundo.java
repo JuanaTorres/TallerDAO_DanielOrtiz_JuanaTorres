@@ -14,8 +14,8 @@ public class Mundo {
 	private Cassandra cassandra;
 	private String baseDatos;
 	
-	public Mundo(String basesDatos ) {
-		baseDatos = basesDatos;
+	public Mundo() {
+		
 	}
 	public void inicializarBaseDatos() {
 		if(baseDatos.equals("SqlLite")) {
