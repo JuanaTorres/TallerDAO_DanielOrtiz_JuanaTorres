@@ -78,21 +78,6 @@ public class View extends JFrame{
 		
 	}
 	
-	public int leerDatoEntero(String m) {
-		int cambio = 0;
-		while (cambio == 0) {
-			String aux = (JOptionPane.showInputDialog(null, m, "Divide y Venceras",
-					JOptionPane.INFORMATION_MESSAGE));
-			try {
-				cambio = Integer.parseInt(aux);
-			} catch (NumberFormatException e) {
-				cambio = 0;
-				jopMessage("Debes ingresar un número", "", 1);
-			}
-		}
-		return cambio;
-	}
-	
 	public void jopMessage(String mensaje, String titulo, int icono) {
 		
 		if(icono == 1) {
@@ -104,6 +89,12 @@ public class View extends JFrame{
 			JOptionPane.showMessageDialog(null, mensaje, titulo, JOptionPane.WARNING_MESSAGE);
 			
 		}
+	}
+	
+	public void MensajeConsola(String Mensaje) {
+		
+		System.out.println(Mensaje);
+		
 	}
 
 	public Panel1_Botones getPanel1() {

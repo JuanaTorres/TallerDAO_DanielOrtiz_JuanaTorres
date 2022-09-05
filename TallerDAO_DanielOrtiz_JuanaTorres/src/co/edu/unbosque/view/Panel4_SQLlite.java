@@ -14,7 +14,7 @@ public class Panel4_SQLlite extends JPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JButton bIniciarB, bCerrarB, bCrearB, bLeerB, bActualizarB, bBorrarB;
+	private JButton bCrearB, bLeerB, bActualizarB, bBorrarB;
 	
 	public Panel4_SQLlite() {
 		
@@ -25,25 +25,8 @@ public class Panel4_SQLlite extends JPanel{
 		border.setTitleColor(Color.BLACK);
 		setBorder(border);
 		
-		bIniciarB = new JButton("Iniciar SQLlite");
-		bIniciarB.setBounds(10, 20, 140, 30);
-		bIniciarB.setOpaque(true);
-		bIniciarB.setFont(new Font("Arial Black", Font.BOLD, 10));
-		bIniciarB.setBackground(Color.WHITE);
-		bIniciarB.setForeground(Color.BLACK);
-		add(bIniciarB);
-		
-		bCerrarB = new JButton("Cerrar SQLlite");
-		bCerrarB.setBounds(170, 20, 140, 30);
-		bCerrarB.setOpaque(true);
-		bCerrarB.setFont(new Font("Arial Black", Font.BOLD, 10));
-		bCerrarB.setBackground(Color.WHITE);
-		bCerrarB.setForeground(Color.BLACK);
-		add(bCerrarB);
-		
-		
 		bCrearB = new JButton("Crear Persona en SQLlite");
-		bCrearB.setBounds(40, 60, 240, 30);
+		bCrearB.setBounds(40, 20, 240, 40);
 		bCrearB.setFont(new Font("Arial Black", Font.BOLD, 12));
 		bCrearB.setOpaque(true);
 		bCrearB.setBackground(Color.WHITE);
@@ -52,7 +35,7 @@ public class Panel4_SQLlite extends JPanel{
 		add(bCrearB);
 		
 		bLeerB = new JButton("Leer Personas en SQLlite");
-		bLeerB.setBounds(40, 100, 240, 30);
+		bLeerB.setBounds(40, 70, 240, 40);
 		bLeerB.setFont(new Font("Arial Black", Font.BOLD, 12));
 		bLeerB.setOpaque(true);
 		bLeerB.setBackground(Color.WHITE);
@@ -61,7 +44,7 @@ public class Panel4_SQLlite extends JPanel{
 		add(bLeerB);
 		
 		bActualizarB = new JButton("Actualizar Persona en SQLlite");
-		bActualizarB.setBounds(40, 140, 240, 30);
+		bActualizarB.setBounds(40, 120, 240, 40);
 		bActualizarB.setFont(new Font("Arial Black", Font.BOLD, 12));
 		bActualizarB.setOpaque(true);
 		bActualizarB.setBackground(Color.WHITE);
@@ -70,7 +53,7 @@ public class Panel4_SQLlite extends JPanel{
 		add(bActualizarB);
 		
 		bBorrarB = new JButton("Borrar Persona en SQLlite");
-		bBorrarB.setBounds(40, 180, 240, 30);
+		bBorrarB.setBounds(40, 170, 240, 40);
 		bBorrarB.setFont(new Font("Arial Black", Font.BOLD, 12));
 		bBorrarB.setOpaque(true);
 		bBorrarB.setBackground(Color.WHITE);
@@ -79,23 +62,7 @@ public class Panel4_SQLlite extends JPanel{
 		add(bBorrarB);
 		
 	}
-
-	public JButton getbIniciarB() {
-		return bIniciarB;
-	}
-
-	public void setbIniciarB(JButton bIniciarB) {
-		this.bIniciarB = bIniciarB;
-	}
-
-	public JButton getbCerrarB() {
-		return bCerrarB;
-	}
-
-	public void setbCerrarB(JButton bCerrarB) {
-		this.bCerrarB = bCerrarB;
-	}
-
+	
 	public JButton getbCrearB() {
 		return bCrearB;
 	}

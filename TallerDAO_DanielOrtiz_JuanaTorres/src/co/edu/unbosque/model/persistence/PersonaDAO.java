@@ -11,14 +11,14 @@ public class PersonaDAO {
 		personas = new ArrayList<Persona>();
 	}
 
-//Revisar
+
 	public String verPersonas() {
 		String texto = "";
 		for (int i = 0; i < personas.size(); i++) {
-			texto = texto.concat(personas.get(i).toString() + "\n");
+			texto +=personas.get(i).id +" | "+personas.get(i).nombre +" | "+personas.get(i).edad +" | "+ personas.get(i).correo +"\n";
 		}
 		return texto;
-	
+		
 	}
 	
 

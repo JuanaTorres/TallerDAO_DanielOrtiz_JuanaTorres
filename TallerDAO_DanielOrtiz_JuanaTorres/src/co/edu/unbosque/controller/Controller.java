@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import co.edu.unbosque.model.Mundo;
-import co.edu.unbosque.model.persistence.Archivo;
 import co.edu.unbosque.view.View;
 
 public class Controller implements ActionListener{
@@ -51,7 +50,8 @@ public class Controller implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-
+		
+		String id = "";
 		switch (e.getActionCommand()) {
 
 		case "Arreglo":
@@ -83,6 +83,7 @@ public class Controller implements ActionListener{
 			vista.getPanel5().setEnabled(false);
 			vista.getPanel6().setVisible(false);
 			vista.getPanel6().setEnabled(false);
+			
 			modelo.cerrarBaseDatos();
 			modelo.setBaseDatos("Archivo");
 			modelo.inicializarBaseDatos();
@@ -100,6 +101,7 @@ public class Controller implements ActionListener{
 			vista.getPanel5().setEnabled(false);
 			vista.getPanel6().setVisible(false);
 			vista.getPanel6().setEnabled(false);
+			
 			modelo.cerrarBaseDatos();
 			modelo.setBaseDatos("SqlLite");
 			modelo.inicializarBaseDatos();
@@ -117,12 +119,14 @@ public class Controller implements ActionListener{
 			vista.getPanel5().setEnabled(true);
 			vista.getPanel6().setVisible(false);
 			vista.getPanel6().setEnabled(false);
+			
 			modelo.cerrarBaseDatos();
 			modelo.setBaseDatos("Cassandra");
 			modelo.inicializarBaseDatos();
 			break;
 
-			//CRUD Arreglo
+
+		//CRUD Arreglo
 		case "Crear Persona en Arreglo":
 
 			vista.getPanel6().Crear();
@@ -133,6 +137,12 @@ public class Controller implements ActionListener{
 		
 		case "Crear en Arreglo":
 			
+			String persona = modelo.insertarBaseDatos(
+								vista.getPanel6().gettId().getText(),
+								vista.getPanel6().gettNombre().getText(),
+								vista.getPanel6().gettCorreo().getText(),
+								vista.getPanel6().gettEdad().getText());
+			vista.MensajeConsola(persona);
 			break;
 			
 		case "Leer Personas en Arreglo":
@@ -140,6 +150,9 @@ public class Controller implements ActionListener{
 			vista.getPanel6().Leer();
 			vista.getPanel6().setVisible(true);
 			vista.getPanel6().setEnabled(true);
+			
+			String arreglo = modelo.leerBaseDatos();
+			vista.getPanel6().gettLectura().setText(arreglo);
 			break;
 			
 		case "Actualizar Persona en Arreglo":
@@ -151,6 +164,12 @@ public class Controller implements ActionListener{
 			break;
 
 		case "Actualizar en Arreglo":
+			
+			String actualizar = modelo.actualizarBaseDatos(id, 
+					vista.getPanel6().gettEdad().getText(), 
+					vista.getPanel6().gettNombre().getText(),
+					vista.getPanel6().gettCorreo().getText());
+			vista.MensajeConsola(actualizar);
 			
 			break;
 			
@@ -164,22 +183,30 @@ public class Controller implements ActionListener{
 			
 		case "Borrar en Arreglo":
 			
+			String borrar = modelo.eliminarBaseDatos(id);
+			vista.MensajeConsola(borrar);
 			break;
 
-			//CRUD Archivo
+		
+		//CRUD Archivo
 		case "Crear Persona en Archivo":
 
-			vista.getPanel6().Borrar();
+			vista.getPanel6().Crear();
 			vista.getPanel6().getbCRUD().setText("Crear en Archivo");
 			vista.getPanel6().setVisible(true);
 			vista.getPanel6().setEnabled(true);
 			break;
 			
 		case "Crear en Archivo":
-			
+			String persona4 = modelo.insertarBaseDatos(
+					vista.getPanel6().gettId().getText(),
+					vista.getPanel6().gettNombre().getText(),
+					vista.getPanel6().gettCorreo().getText(),
+					vista.getPanel6().gettEdad().getText());
+			vista.MensajeConsola(persona4);
 			break;
 
-		case "Leer Persona en Archivo":
+		case "Leer Personas en Archivo":
 
 			vista.getPanel6().Leer();
 			vista.getPanel6().setVisible(true);
@@ -196,6 +223,12 @@ public class Controller implements ActionListener{
 
 		case "Actualizar en Archivo":
 			
+			String actualizar1 = modelo.actualizarBaseDatos(id, 
+					vista.getPanel6().gettEdad().getText(), 
+					vista.getPanel6().gettNombre().getText(),
+					vista.getPanel6().gettCorreo().getText());
+			vista.MensajeConsola(actualizar1);
+			
 			break;
 			
 		case "Borrar Persona en Archivo":
@@ -208,18 +241,12 @@ public class Controller implements ActionListener{
 
 		case "Borrar en Archivo":
 			
+			String borrar1 = modelo.eliminarBaseDatos(id);
+			vista.MensajeConsola(borrar1);
 			break;
 			
-			//CRUD SQLlite
-		case "Iniciar SQLlite":
-			
-			
-			break;
 
-		case "Cerrar SQLlite":
-
-			break;
-
+		//CRUD SQLlite
 		case "Crear Persona en SQLlite":
 
 			vista.getPanel6().Crear();
@@ -230,9 +257,15 @@ public class Controller implements ActionListener{
 			
 		case "Crear en SQLlite":
 			
+			String persona7 = modelo.insertarBaseDatos(
+					vista.getPanel6().gettId().getText(),
+					vista.getPanel6().gettNombre().getText(),
+					vista.getPanel6().gettCorreo().getText(),
+					vista.getPanel6().gettEdad().getText());
+			vista.MensajeConsola(persona7);
 			break;
 
-		case "Leer Persona en SQLlite":
+		case "Leer Personas en SQLlite":
 
 			vista.getPanel6().Leer();
 			vista.getPanel6().setVisible(true);
@@ -249,6 +282,12 @@ public class Controller implements ActionListener{
 			
 		case "Actualizar en SQLlite":
 			
+			String actualizar2 = modelo.actualizarBaseDatos(id, 
+					vista.getPanel6().gettEdad().getText(), 
+					vista.getPanel6().gettNombre().getText(),
+					vista.getPanel6().gettCorreo().getText());
+			vista.MensajeConsola(actualizar2);
+			
 			break;
 
 		case "Borrar Persona en SQLlite":
@@ -261,17 +300,12 @@ public class Controller implements ActionListener{
 			
 		case "Borrar en SQLlite":
 			
+			String borrar3 = modelo.eliminarBaseDatos(id);
+			vista.MensajeConsola(borrar3);
 			break;
 
-			//CRUD Cassandra
-		case "Iniciar Cassandra":
-
-			break;
-
-		case "Cerrar Cassandra":
-
-			break;
-
+	
+		//CRUD Cassandra
 		case "Crear Persona en Cassandra":
 
 			vista.getPanel6().Crear();
@@ -282,9 +316,15 @@ public class Controller implements ActionListener{
 			
 		case "Crear en Cassandra":
 			
+			String persona12 = modelo.insertarBaseDatos(
+					vista.getPanel6().gettId().getText(),
+					vista.getPanel6().gettNombre().getText(),
+					vista.getPanel6().gettCorreo().getText(),
+					vista.getPanel6().gettEdad().getText());
+			vista.MensajeConsola(persona12);
 			break;
 
-		case "Leer Persona en Cassandra":
+		case "Leer Personas en Cassandra":
 
 			vista.getPanel6().Leer();
 			vista.getPanel6().setVisible(true);
@@ -301,10 +341,16 @@ public class Controller implements ActionListener{
 			
 		case "Actualizar en Cassandra":
 			
+			String actualizar4 = modelo.actualizarBaseDatos(id, 
+					vista.getPanel6().gettEdad().getText(), 
+					vista.getPanel6().gettNombre().getText(),
+					vista.getPanel6().gettCorreo().getText());
+			vista.MensajeConsola(actualizar4);
+			
 			break;
-
+			
 		case "Borrar Persona en Cassandra":
-
+			
 			vista.getPanel6().Borrar();
 			vista.getPanel6().getbCRUD().setText("Borrar en Cassandra");
 			vista.getPanel6().setVisible(true);
@@ -313,22 +359,48 @@ public class Controller implements ActionListener{
 			
 		case "Borrar en Cassandra":
 			
+			String borrar4 = modelo.eliminarBaseDatos(id);
+			vista.MensajeConsola(borrar4);
 			break;
-
+			
 		case "Buscar":
-
+			
 			if(vista.getPanel6().gettBusquedaId().getText().equals("")) {
-
+				
 				vista.getPanel6().gettNombre().setText("");
 				vista.getPanel6().gettCorreo().setText("");
 				vista.getPanel6().gettEdad().setText("");
+				
+				vista.jopMessage("Ingresa un Id a buscar", "!Atención!", 1);
+				
+			} else {
+				
+				String busqueda = vista.getPanel6().gettBusquedaId().getText();
+				
+				String persona2 = modelo.buscarBaseDatos(busqueda);
+				
+				if (persona2.equals(null)) {
+					
+					vista.jopMessage("No se encontro el Id", "Error", 2);
+					
+				} else {
+				
+					String[] p2split = persona2.split(" \\| ");
 
+					id = p2split[2];
+					vista.getPanel6().getbCRUD().setEnabled(true);
+					vista.getPanel6().gettNombre().setText(p2split[2]);
+					vista.getPanel6().gettCorreo().setText(p2split[1]);
+					vista.getPanel6().gettEdad().setText(p2split[3]);
+					
+				}	
+				
 			}
-
+			
 			break;
-
+			
 		}
-
+		
 	}
-
+	
 }

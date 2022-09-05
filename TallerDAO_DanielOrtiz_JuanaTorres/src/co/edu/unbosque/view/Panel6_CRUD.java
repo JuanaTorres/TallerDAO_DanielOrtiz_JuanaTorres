@@ -18,7 +18,6 @@ public class Panel6_CRUD extends JPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String Borde;
 	private JLabel lBusId, lId, lNombre, lCorreo, lEdad;
 	private JTextField tBusquedaId, tId, tNombre, tCorreo, tEdad;
 	private JTextArea tLectura;
@@ -29,8 +28,7 @@ public class Panel6_CRUD extends JPanel{
 		
 		setLayout(null);
 		
-		Borde = "Crear Usuario";
-		TitledBorder border = BorderFactory.createTitledBorder(Borde);
+		TitledBorder border = BorderFactory.createTitledBorder("CRUD");
 		border.setTitleFont(new Font("Arial Black", Font.BOLD, 12));
 		border.setTitleColor(Color.BLACK);
 		setBorder(border);
@@ -150,8 +148,6 @@ public class Panel6_CRUD extends JPanel{
 	
 	public void Crear() {
 		
-		Borde = "Crear Persona";
-		
 		lBusId.setVisible(false);
 		lBusId.setEnabled(false);
 		tBusquedaId.setVisible(false);
@@ -187,8 +183,6 @@ public class Panel6_CRUD extends JPanel{
 	
 	public void Leer() {
 		
-		Borde = "Leer Personas";
-		
 		lBusId.setVisible(false);
 		lBusId.setEnabled(false);
 		tBusquedaId.setVisible(false);
@@ -215,8 +209,6 @@ public class Panel6_CRUD extends JPanel{
 	}
 	
 	public void Actualizar() {
-		
-		Borde = "Actualizar Persona";
 		
 		lBusId.setVisible(true);
 		lBusId.setEnabled(true);
@@ -247,14 +239,13 @@ public class Panel6_CRUD extends JPanel{
 		tEdad.setText("");
 		
 		bCRUD.setVisible(true);
+		bCRUD.setEnabled(false);
 		
 		barraDes.setVisible(false);
 		
 	}
 	
 	public void Borrar() {
-		
-		Borde = "Borar Persona";
 		
 		lBusId.setVisible(true);
 		lBusId.setEnabled(true);
@@ -284,19 +275,12 @@ public class Panel6_CRUD extends JPanel{
 		tEdad.setText("");
 		
 		bCRUD.setVisible(true);
+		bCRUD.setEnabled(false);
 		
 		barraDes.setVisible(false);
 		
 	}
-
-	public String getBorde() {
-		return Borde;
-	}
-
-	public void setBorde(String borde) {
-		Borde = borde;
-	}
-
+	
 	public JLabel getlBusId() {
 		return lBusId;
 	}
