@@ -49,7 +49,7 @@ public class SqlLite_BD {
 			pstm.close();
 			res=true;
 		}catch(Exception e){
-			System.out.println(e);
+			e.printStackTrace();
 		}
 		return res;
 	}
@@ -65,7 +65,7 @@ public class SqlLite_BD {
 			}
 		}
 		catch (SQLException ex) {
-			System.out.println(ex);
+			ex.printStackTrace();
 		}
 		return res;
 	}
@@ -76,12 +76,14 @@ public class SqlLite_BD {
 		}
 		boolean res= false;
 		try {
-			statement = connection.createStatement();
-			statement.executeQuery("DELETE FROM Persona WHERE id='"+id+"';");
+			String p=("DELETE FROM Persona WHERE id='"+id+"';");
+			PreparedStatement pstm = connection.prepareStatement(p);
+			pstm.execute();
+			pstm.close();
 			res= true;
 		}
 		catch (SQLException ex) {
-			System.out.println(ex);
+			ex.printStackTrace();
 		}
 		return res;
 	}		 

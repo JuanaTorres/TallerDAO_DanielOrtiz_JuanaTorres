@@ -84,7 +84,7 @@ public class Cassandra {
 		return null;
 	}
 	public boolean insertarPersona( String id, String Nombre, String Correo, String Edad) {
-		if(buscarPersona(id)==null) {
+		if(buscarPersona(id)!=null) {
 			return false;
 		}
 		ResultSet rs = sesion.execute("insert into \"Persona\" ( \"id\",\"Nombre\", \"Correo\", \"Edad\" ) \r\n"
@@ -95,14 +95,14 @@ public class Cassandra {
 		if(buscarPersona(id)==null) {
 			return false;
 		}
-		ResultSet rs = sesion.execute("delete into \"Persona\" where \"id\"= '"+id+"';  ");
+		ResultSet rs = sesion.execute("Delete from \"Persona\" where \"id\"= '"+id+"';");
 		return rs.isExhausted();
 	}
 	public boolean actualizarPersona( String id, String Nombre, String Correo, String Edad) {
 		if(buscarPersona(id)==null) {
 			return false;
 		}
-		ResultSet rs = sesion.execute("update into \"Persona\" where = \"id\" = '"+id+"' set \"Nombre\" = '"+Nombre+"', \"Correo\"= '"+Correo+"', \"Edad\" = '"+Edad+"';  ");
+		ResultSet rs = sesion.execute("Update  \"Persona\" set \"Nombre\"='"+Nombre+"',\"Correo\"='"+Correo+"',\"Edad\"='"+Edad+"' where \"id\"= '"+id+"'; ");
 		return rs.isExhausted();
 	}
 		

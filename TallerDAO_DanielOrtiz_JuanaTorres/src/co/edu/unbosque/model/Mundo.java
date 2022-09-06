@@ -161,7 +161,7 @@ public class Mundo {
 			if(r==null) {
 				return "No existe una persona con la id: "+ id;
 			}
-			res=r.getString("id")+","+r.getString("Nombre")+","+r.getString("Correo")+","+r.getString("Edad");
+			res=r.getString("id")+" | "+r.getString("Nombre")+" | "+r.getString("Correo")+" | "+r.getString("Edad");
 
 		}else {
 
