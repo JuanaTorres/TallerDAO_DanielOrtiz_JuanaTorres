@@ -64,7 +64,7 @@ public class Archivo {
 	        return datos;
 		} catch (IOException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
 			return null;
 		}
 	}
