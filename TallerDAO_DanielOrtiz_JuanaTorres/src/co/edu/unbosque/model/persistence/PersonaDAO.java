@@ -13,8 +13,11 @@ public class PersonaDAO {
 
 
 	public String verPersonas() {
-		String texto = "";
+		String texto = null;
 		for (int i = 0; i < personas.size(); i++) {
+			if(texto==null) {
+				texto="";
+			}
 			texto +=personas.get(i).id +" | "+personas.get(i).nombre +" | "+personas.get(i).edad +" | "+ personas.get(i).correo +"\n";
 		}
 		return texto;
@@ -38,7 +41,7 @@ public class PersonaDAO {
 	}
 
 
-	public boolean agregarPersona(String id, String edad, String nombre, String correo) {
+	public boolean agregarPersona(String id, String nombre, String edad, String correo) {
 
 		Persona nuevo = new Persona( id,  edad,  nombre,  correo);
 

@@ -61,8 +61,11 @@ public class Mundo {
 			
 		}else  {
 			
-			res = personaDao.agregarPersona(id, edad, nombre, correo);
-			archivo.escribirABinario(personaDao.getPersonas());
+			res = personaDao.agregarPersona(id, nombre,edad, correo);
+			if (res) {
+				archivo.escribirABinario(personaDao.getPersonas());
+			}
+			
 			
 		}
 		if (res) {
@@ -89,7 +92,9 @@ public class Mundo {
 		}else{
 			
 			res = personaDao.actualizarPersona(id, nombre, correo, edad);
-			archivo.escribirABinario(personaDao.getPersonas());
+			if (res) {
+				archivo.escribirABinario(personaDao.getPersonas());
+			}
 			
 		}
 		
@@ -141,12 +146,18 @@ public class Mundo {
 		}else if(baseDatos.equals("Cassandra")) {
 			
 			Row r = cassandra.buscarPersona(id);
-			res=r.getString("id")+","+r.getString("Nombre")+","+r.getString("Edad")+","+r.getString("Correo");
+			if(r==null) {
+				return "No existe una persona con la id: "+ id;
+			}
+			res=r.getString("id")+","+r.getString("Nombre")+","+r.getString("Correo")+","+r.getString("Edad");
 			
 		}else {
 			
 			Persona p = personaDao.buscarPersona(id);
-			res = p.id+" | "+p.nombre+" | "+ p.edad+" | "+p.correo;
+			if(p==null) {
+				return "No existe una persona con la id: "+ id;
+			}
+			res = p.id+" | "+p.nombre+" | "+ p.correo+" | "+p.edad;
 			
 		}
 		
