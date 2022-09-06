@@ -33,6 +33,8 @@ public class Panel6_CRUD extends JPanel{
 		border.setTitleColor(Color.BLACK);
 		setBorder(border);
 		
+		
+		//Busqueda Id
 		lBusId = new JLabel("Buscar");
 		lBusId.setBounds(10, 20, 46, 20);
 		lBusId.setOpaque(false);
@@ -176,6 +178,7 @@ public class Panel6_CRUD extends JPanel{
 		tEdad.setText("");
 		
 		bCRUD.setVisible(true);
+		bCRUD.setEnabled(true);
 		
 		barraDes.setVisible(false);
 		

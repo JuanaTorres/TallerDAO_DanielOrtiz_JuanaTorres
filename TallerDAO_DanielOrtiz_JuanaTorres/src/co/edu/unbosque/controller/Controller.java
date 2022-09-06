@@ -51,7 +51,6 @@ public class Controller implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 
-		String id = "";
 		switch (e.getActionCommand()) {
 
 		case "Arreglo":
@@ -170,7 +169,9 @@ public class Controller implements ActionListener{
 
 		case "Actualizar en Arreglo":
 
-			String actualizar = modelo.actualizarBaseDatos(id, 
+			vista.MensajeConsola(vista.getPanel6().gettBusquedaId().getText());
+			String actualizar = modelo.actualizarBaseDatos(
+					vista.getPanel6().gettBusquedaId().getText(), 
 					vista.getPanel6().gettEdad().getText(), 
 					vista.getPanel6().gettNombre().getText(),
 					vista.getPanel6().gettCorreo().getText());
@@ -194,7 +195,7 @@ public class Controller implements ActionListener{
 
 		case "Borrar en Arreglo":
 
-			String borrar = modelo.eliminarBaseDatos(id);
+			String borrar = modelo.eliminarBaseDatos(vista.getPanel6().gettBusquedaId().getText());
 			if (borrar.contains("error")) {
 
 				vista.jopMessage(borrar, "Error", 2);
@@ -234,6 +235,9 @@ public class Controller implements ActionListener{
 			vista.getPanel6().Leer();
 			vista.getPanel6().setVisible(true);
 			vista.getPanel6().setEnabled(true);
+			
+			String archivo = modelo.leerBaseDatos();
+			vista.getPanel6().gettLectura().setText(archivo);
 			break;
 
 		case "Actualizar Persona en Archivo":
@@ -246,7 +250,8 @@ public class Controller implements ActionListener{
 
 		case "Actualizar en Archivo":
 
-			String actualizar1 = modelo.actualizarBaseDatos(id, 
+			String actualizar1 = modelo.actualizarBaseDatos(
+					vista.getPanel6().gettBusquedaId().getText(), 
 					vista.getPanel6().gettEdad().getText(), 
 					vista.getPanel6().gettNombre().getText(),
 					vista.getPanel6().gettCorreo().getText());
@@ -270,7 +275,7 @@ public class Controller implements ActionListener{
 
 		case "Borrar en Archivo":
 
-			String borrar1 = modelo.eliminarBaseDatos(id);
+			String borrar1 = modelo.eliminarBaseDatos(vista.getPanel6().gettBusquedaId().getText());
 			if (borrar1.contains("error")) {
 
 				vista.jopMessage(borrar1, "Error", 2);
@@ -311,6 +316,9 @@ public class Controller implements ActionListener{
 			vista.getPanel6().Leer();
 			vista.getPanel6().setVisible(true);
 			vista.getPanel6().setEnabled(true);
+			
+			String basededatos= modelo.leerBaseDatos();
+			vista.getPanel6().gettLectura().setText(basededatos);
 			break;
 
 		case "Actualizar Persona en SQLlite":
@@ -323,7 +331,8 @@ public class Controller implements ActionListener{
 
 		case "Actualizar en SQLlite":
 
-			String actualizar2 = modelo.actualizarBaseDatos(id, 
+			String actualizar2 = modelo.actualizarBaseDatos(
+					vista.getPanel6().gettBusquedaId().getText(), 
 					vista.getPanel6().gettEdad().getText(), 
 					vista.getPanel6().gettNombre().getText(),
 					vista.getPanel6().gettCorreo().getText());
@@ -347,7 +356,7 @@ public class Controller implements ActionListener{
 
 		case "Borrar en SQLlite":
 
-			String borrar3 = modelo.eliminarBaseDatos(id);
+			String borrar3 = modelo.eliminarBaseDatos(vista.getPanel6().gettBusquedaId().getText());
 			if (borrar3.contains("error")) {
 
 				vista.jopMessage(borrar3, "Error", 2);
@@ -388,6 +397,9 @@ public class Controller implements ActionListener{
 			vista.getPanel6().Leer();
 			vista.getPanel6().setVisible(true);
 			vista.getPanel6().setEnabled(true);
+			
+			String cassandra = modelo.leerBaseDatos();
+			vista.getPanel6().gettLectura().setText(cassandra);
 			break;
 
 		case "Actualizar Persona en Cassandra":
@@ -400,7 +412,8 @@ public class Controller implements ActionListener{
 
 		case "Actualizar en Cassandra":
 
-			String actualizar4 = modelo.actualizarBaseDatos(id, 
+			String actualizar4 = modelo.actualizarBaseDatos(
+					vista.getPanel6().gettBusquedaId().getText(), 
 					vista.getPanel6().gettEdad().getText(), 
 					vista.getPanel6().gettNombre().getText(),
 					vista.getPanel6().gettCorreo().getText());
@@ -424,7 +437,7 @@ public class Controller implements ActionListener{
 
 		case "Borrar en Cassandra":
 
-			String borrar4 = modelo.eliminarBaseDatos(id);
+			String borrar4 = modelo.eliminarBaseDatos(vista.getPanel6().gettBusquedaId().getText());
 			if (borrar4.contains("error")) {
 
 				vista.jopMessage(borrar4, "Error", 2);
@@ -458,7 +471,6 @@ public class Controller implements ActionListener{
 
 					String[] p2split = persona2.split(" \\| ");
 
-					id = p2split[2];
 					vista.getPanel6().getbCRUD().setEnabled(true);
 					vista.getPanel6().gettNombre().setText(p2split[1]);
 					vista.getPanel6().gettCorreo().setText(p2split[2]);

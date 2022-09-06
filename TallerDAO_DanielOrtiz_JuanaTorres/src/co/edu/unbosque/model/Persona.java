@@ -15,21 +15,22 @@ public class Persona implements Serializable{
 		this.edad = edad;
 		this.nombre = nombre;
 		this.correo = correo;
+		verificarInvariante();
 		
 	}
 	
 	public Persona() {
 		
-		
+		verificarInvariante();
 		
 	}
 	
 	private void verificarInvariante() {
 		
-		assert id!= null : "La identificación no puede ser null";
-		assert edad != null : "La edad no puede ser null";
-		assert nombre != null : "El nombre no puede ser null";
-		assert correo != null : "El correo no puede ser null";
+		assert id!= null && !id.trim().equals("") : "La identificación no puede ser null";
+		assert edad != null && !edad.trim().equals("") : "La edad no puede ser null";
+		assert nombre != null && !nombre.trim().equals("") : "El nombre no puede ser null";
+		assert correo != null && !correo.trim().equals("") : "El correo no puede ser null";
 		
 	}
 

@@ -63,11 +63,14 @@ public class Cassandra {
 		ResultSet rs = sesion.execute("select * from \"Persona\"; ");
 		Iterator<Row> iterador = rs.iterator();
 		while (iterador.hasNext()){
+			if(a == null) {
+				a = "";
+			}
 			Row r = iterador.next();
-			a=(r.getString("id"))+" | ";
-			a=(r.getString("Nombre"))+" | ";
-			a=(r.getString("Correo"))+" | ";
-			a=(r.getString("Edad"))+"\n";
+			a+=(r.getString("id"))+" | ";
+			a+=(r.getString("Nombre"))+" | ";
+			a+=(r.getString("Correo"))+" | ";
+			a+=(r.getString("Edad"))+"\n";
 		}
 		return a;
 	}
@@ -102,7 +105,5 @@ public class Cassandra {
 		ResultSet rs = sesion.execute("update into \"Persona\" where = \"id\" = '"+id+"' set \"Nombre\" = '"+Nombre+"', \"Correo\"= '"+Correo+"', \"Edad\" = '"+Edad+"';  ");
 		return rs.isExhausted();
 	}
-//		public static void main(String[] args) {
-//		      Cassandra c= new Cassandra();
-//		 }
+		
 }
